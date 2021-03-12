@@ -27,7 +27,7 @@ const incomingMessageHandler = async (req: Request, res: Response) => {
       }
       res.status(httpStatus.OK).send('EVENT_RECEIVED');
     } catch (err) {
-      res.status(httpStatus.INTERNAL_SERVER_ERROR);
+      res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
     }
   } else {
     res.sendStatus(httpStatus.NOT_FOUND);

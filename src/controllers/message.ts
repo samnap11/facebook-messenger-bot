@@ -8,38 +8,32 @@ const saveMessage = async (
   timestamp: number,
   { mid, text }: Message
 ) => {
-  try {
-    const newMessage: IMessageModel = await MessageModel.create({
-      id: mid,
-      text,
-      senderId,
-      timestamp,
-    });
+  const newMessage: IMessageModel = await MessageModel.create({
+    id: mid,
+    text,
+    senderId,
+    timestamp,
+  });
 
-    await newMessage.save();
-  } catch (err) {
-    console.error(err);
-  }
+  await newMessage.save();
+};
+
+const deleteMessageById = async (id: string) => {
+  return await MessageModel.findOneAndDelete({ id });
 };
 
 const getAllMessages = async () => {
-  try {
-    const messages = await MessageModel.find({}).sort({ timestamp: 'desc' });
+  const messages = await MessageModel.find({}, '-_id -__v').sort({
+    timestamp: 'desc',
+  });
 
-    return messages;
-  } catch (err) {
-    console.error(err);
-  }
+  return messages;
 };
 
 const getMessageById = async (id: string) => {
-  try {
-    const message = await MessageModel.findOne({ id });
+  const message = await MessageModel.findOne({ id }, '-_id -__v');
 
-    return message;
-  } catch (err) {
-    console.error(err);
-  }
+  return message;
 };
 
-export { saveMessage, getAllMessages, getMessageById };
+export { saveMessage, getAllMessages, getMessageById, deleteMessageById };
