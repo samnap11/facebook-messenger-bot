@@ -1,9 +1,12 @@
 import { Router } from 'express';
-import { subscriptionHandler, verificationHandler } from '../handlers/webhook';
+import {
+  incomingMessageHandler,
+  verificationHandler,
+} from '../handlers/webhook';
 
 const webhookRouter = Router();
 
-webhookRouter.post('/', subscriptionHandler);
+webhookRouter.post('/', incomingMessageHandler);
 
 webhookRouter.get('/', verificationHandler);
 

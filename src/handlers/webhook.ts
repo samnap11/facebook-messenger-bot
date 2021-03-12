@@ -1,17 +1,37 @@
 import { Request, Response } from 'express';
 import { httpStatus } from '../constants/statuscode';
 import { queryParams } from '../constants/webhook';
+import { saveMessage } from '../controllers/message';
+import Message from '../interfaces/message';
+import Sender from '../interfaces/sender';
 
-const subscriptionHandler = (req: Request, res: Response) => {
+const incomingMessageHandler = async (req: Request, res: Response) => {
   const { body } = req;
 
-  for (const entry of body.entry) {
-    const webhookEvent = entry.messaging[0];
+  if (body.object === 'page') {
+    try {
+      for (const entry of body.entry) {
+        const webhookEvent = entry.messaging[0];
 
-    console.log(webhookEvent);
+        const {
+          sender,
+          timestamp,
+          message,
+        }: {
+          sender: Sender;
+          timestamp: number;
+          message: Message;
+        } = webhookEvent;
+
+        await saveMessage(sender, timestamp, message);
+      }
+      res.status(httpStatus.OK).send('EVENT_RECEIVED');
+    } catch (err) {
+      res.status(httpStatus.INTERNAL_SERVER_ERROR);
+    }
+  } else {
+    res.sendStatus(httpStatus.NOT_FOUND);
   }
-
-  res.status(httpStatus.OK).send('EVENT_RECEIVED');
 };
 
 const verificationHandler = (req: Request, res: Response) => {
@@ -34,4 +54,4 @@ const verificationHandler = (req: Request, res: Response) => {
   }
 };
 
-export { subscriptionHandler, verificationHandler };
+export { incomingMessageHandler, verificationHandler };
