@@ -7,7 +7,6 @@ import {
 const webhookRouter = Router();
 
 webhookRouter.post('/', incomingMessageHandler);
-
 webhookRouter.get('/', verificationHandler);
 
 export default webhookRouter;

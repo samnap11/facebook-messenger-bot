@@ -1,7 +1,7 @@
 const hasBirthDayPassed = (birthdate: Date): boolean => {
   const today = new Date();
 
-  const birthDate = birthdate;
+  const birthDate = new Date(birthdate);
 
   birthDate.setFullYear(today.getFullYear());
 
