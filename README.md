@@ -81,11 +81,11 @@ $ yarn dev
 
 ## Endpoints
 
-[POST] `/webhook`: Handle incoming messages from `Messenger`
-[GET] `/webhook`: Create a connection with `Messenger` and verify the challenge from `Messenger`
-[GET] `/messages`: Get all messages
-[GET] `/messages/:id`: Get a message with an id of `id`
-[DELETE] `/messages/:id`: Delete a message with an id of `id`
+- [POST] `/webhook`: Handle incoming messages from `Messenger`
+- [GET] `/webhook`: Create a connection with `Messenger` and verify the challenge from `Messenger`
+- [GET] `/messages`: Get all messages
+- [GET] `/messages/:id`: Get a message with an id of `id`
+- [DELETE] `/messages/:id`: Delete a message with an id of `id`
 
 ## Disclaimer
 

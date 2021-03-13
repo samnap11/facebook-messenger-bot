@@ -84,10 +84,8 @@ const receiveUserResponse = async (
             'There are ' + nextBirthDateInDays + replies.TELL_REMAINING_DAYS
           );
         } else {
-          const nextBirthDateInDays = nextBirthdayInDays(birthdate!);
-          console.log(birthdate?.toLocaleDateString());
-
-          console.log('Birthday has not passed yet');
+          const birthDate = new Date(birthdate!);
+          const nextBirthDateInDays = nextBirthdayInDays(birthDate);
 
           return textBotResponse(
             id,
