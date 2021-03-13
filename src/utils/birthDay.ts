@@ -20,7 +20,11 @@ const isBirthDayToday = (birthdate: Date): boolean => {
 const nextBirthdayInDays = (nextBirthDate: Date): number => {
   const today = new Date();
 
-  const difference = nextBirthDate.getTime() - today.getTime();
+  const nextBirthDate_ = new Date(nextBirthDate);
+
+  nextBirthDate_.setFullYear(today.getFullYear());
+
+  const difference = nextBirthDate_.getTime() - today.getTime();
 
   const millisecondsInADay = 24 * 3600 * 1000;
 

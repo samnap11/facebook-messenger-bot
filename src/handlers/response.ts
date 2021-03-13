@@ -73,7 +73,6 @@ const receiveUserResponse = async (
           return textBotResponse(id, replies.TELL_HAPPY_BIRTHDAY);
         } else if (hasBirthDayPassed(birthdate!)) {
           const today = new Date();
-
           const nextBirthDate = new Date(birthdate!);
 
           nextBirthDate.setFullYear(today.getFullYear() + 1);
@@ -86,6 +85,9 @@ const receiveUserResponse = async (
           );
         } else {
           const nextBirthDateInDays = nextBirthdayInDays(birthdate!);
+          console.log(birthdate?.toLocaleDateString());
+
+          console.log('Birthday has not passed yet');
 
           return textBotResponse(
             id,
