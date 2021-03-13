@@ -84,8 +84,11 @@ const receiveUserResponse = async (
             'There are ' + nextBirthDateInDays + replies.TELL_REMAINING_DAYS
           );
         } else {
-          const birthDate = new Date(birthdate!);
-          const nextBirthDateInDays = nextBirthdayInDays(birthDate);
+          const today = new Date();
+          const nextBirthDate = new Date(birthdate!);
+
+          nextBirthDate.setFullYear(today.getFullYear());
+          const nextBirthDateInDays = nextBirthdayInDays(nextBirthDate);
 
           return textBotResponse(
             id,
