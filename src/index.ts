@@ -10,7 +10,6 @@ const app = express();
 
 const main = async () => {
   try {
-    console.log(process.env.MONGODB_URI as string);
     await connectDB();
     console.log('MongoDB is connected!');
 

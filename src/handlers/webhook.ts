@@ -4,6 +4,7 @@ import { queryParams } from '../constants/webhook';
 import { saveMessage } from '../controllers/message';
 import Message from '../interfaces/message';
 import Sender from '../interfaces/sender';
+import { generateReply, sendReply } from './response';
 
 const incomingMessageHandler = async (req: Request, res: Response) => {
   const { body } = req;
@@ -24,6 +25,10 @@ const incomingMessageHandler = async (req: Request, res: Response) => {
         } = webhookEvent;
 
         await saveMessage(sender, timestamp, message);
+
+        const botResponse = await generateReply(sender, message);
+
+        await sendReply(botResponse);
       }
       res.status(httpStatus.OK).send('EVENT_RECEIVED');
     } catch (err) {
