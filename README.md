@@ -79,6 +79,10 @@ $ yarn dev
 4. **Mask** will ask you whether you want to know how long it will be until your next birthday. You can choose from one of the quick reply options or you can type in your own answer. For affirmative answers, there are `'yes', 'yeah', 'yup', 'uh-huh', 'y', 'yep'`. For negative answers, there are `'no', 'nah', 'n', 'nope', 'nuh-uh'`. If you answer other than the available options, **Mask** won't be able to recognize your response and will ask you to answer it again.
 5. After you answer the final prompt, whether with an affirmative or a negative, **Mask** will reset and act as if the conversation before never happened. You will go back to step 1 and repeat the process.
 
+## App Demo
+
+![](demo-recordings/recording.gif)
+
 ## Endpoints
 
 - [POST] `/webhook`: Handle incoming messages from `Messenger`
